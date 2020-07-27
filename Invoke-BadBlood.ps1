@@ -19,7 +19,7 @@ Write-Progress -Activity "Random Stuff into A domain - Creating OUs" -Status "Pr
 $I++
 $ousAll = Get-adorganizationalunit -filter *
 write-host "Creating Users on Domain" -ForegroundColor Green
-$NumOfUsers = 1000..5000|Get-random #this number is the random number of users to create on a domain.  Todo: Make process createusers.ps1 in a parallel loop
+$NumOfUsers = 100..500|Get-random #this number is the random number of users to create on a domain.  Todo: Make process createusers.ps1 in a parallel loop
 $X=1
 Write-Progress -Activity "Random Stuff into A domain - Creating Users" -Status "Progress:" -PercentComplete ($i/$totalscripts*100)
 $I++
@@ -33,7 +33,7 @@ $x++
 $AllUsers = Get-aduser -Filter *
 
 write-host "Creating Groups on Domain" -ForegroundColor Green
-$NumOfGroups = 100..500|Get-random 
+$NumOfGroups = 10..100|Get-random 
 $X=1
 Write-Progress -Activity "Random Stuff into A domain - Creating $NumOfGroups Groups" -Status "Progress:" -PercentComplete ($i/$totalscripts*100)
 $I++
@@ -48,7 +48,7 @@ $x++
 $Grouplist = Get-ADGroup -Filter { GroupCategory -eq "Security" -and GroupScope -eq "Global"  } -Properties isCriticalSystemObject
 $LocalGroupList =  Get-ADGroup -Filter { GroupScope -eq "domainlocal"  } -Properties isCriticalSystemObject
 write-host "Creating Computers on Domain" -ForegroundColor Green
-$NumOfComps = 50..150|Get-random 
+$NumOfComps = 10..100|Get-random 
 $X=1
 Write-Progress -Activity "Random Stuff into A domain - Creating Computers" -Status "Progress:" -PercentComplete ($i/$totalscripts*100)
 .($basescriptPath + '\AD_Computers_Create\CreateComputers.ps1')
